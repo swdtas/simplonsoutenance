@@ -1,39 +1,43 @@
-<a href="{{ route('product.edit', $product->id) }}" class=""><ion-icon name="eyedrop-outline"  style="font-size: 30px; color:green;"></ion-icon></a>
-                                <a href="#" data-toggle="modal" data-target="#productModal{{ $product->id }}">
-                                    <ion-icon name="information-circle-outline" style="font-size: 30px; color: primary;"></ion-icon>
-                                </a>
-                            </td>
-                            </tr>
-                        
-                        <!-- Modal pour les détails du produit -->
+<!DOCTYPE html>
+<html lang="fr">
 
-                    <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel{{ $product->id }}" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="productModalLabel{{ $product->id }}">Détails du produit {{ $product->nom_product }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="{{ asset($product->image_product) }}" alt="{{ $product->nom_product }}" width="150">
-                                    <h3>{{ $product->nom_product }}</h3>
-                                    <p>Prix: {{ $product->prix_product }}</p>
-                                    <p>Description: {{ $product->description_product }}</p>
-                                    <!-- Ajoutez d'autres détails du produit ici -->
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                </div>
-                            </div>
-                        </div>
-                   </div>
-                     @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio-market</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/front.css') }}">
+</head>
+<body>
+<header>
+ <nav class="navbar  navbar-expand-lg  " >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse  navbar-collapse justify-content-start " id="collapsibleNavbar">
+            <ul class="navbar-nav container  ">         
+                <li class="nav-item  ">
+                    <a class="nav-link text-white active" href="#section2">Accueil</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" href="#propos">A propos de nous</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#service">Produits</a>
+                </li>
+            </ul>
+          </div>
+          <div class>
+          <form class="d-flex justify-content-end" role="search">
+                    <input class="form-control  mx-1 " type="search" placeholder="Rechercher" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                </form>
+          </div>
+         </div>    
+     </nav>
+</header>
+<main>
+<section class="accueil">
+  <h3 > Bienvenue dans notre Plateforme de Produits Bio!</h3>
+</section>  

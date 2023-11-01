@@ -27,7 +27,7 @@ class ProductController extends Controller
                 $validatedData = $request->validated();
                 $validatedData['image_product'] = Storage::url($imagePath);
                 Product::create($validatedData);
-                return redirect()->route('product.create')->with('success', 'Produit enregistré avec succès.');
+                return redirect()->route('list_product')->with('success', 'Produit enregistré avec succès.');
             } else {
                 return redirect()->back()->withInput()->with('error', 'Veuillez sélectionner une image pour le produit.');
             }
@@ -40,8 +40,6 @@ class ProductController extends Controller
     {
         // Récupérer toutes les catégories pour afficher le filtre
         $categories = Category::all();
-    
-        // Récupérer la catégorie sélectionnée depuis la requête
         $selectedCategory = $request->input('categorie', 'all');
     
         // Récupérer les produits en fonction de la catégorie sélectionnée

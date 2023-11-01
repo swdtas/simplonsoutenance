@@ -23,7 +23,7 @@ class CategoryController extends Controller
             Category::create($validatedData);
             return redirect()->route('list_categorie')->with('success', 'Catégorie créée avec succès.');
         } catch (\Exception $e) {
-            return redirect()->back()->withInput()->with('error', 'Une erreur est survenue lors de la création de la catégorie.');
+            return redirect()->route('categories.create')->with('error', 'Une erreur est survenue lors de la création de la catégorie.');
         }
     }
 

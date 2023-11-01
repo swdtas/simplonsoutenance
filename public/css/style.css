@@ -8,16 +8,12 @@
   :root {
     --vert: #127d04;
     --white: #fff;
-    --gray: #f5f5f5;
-    --black1: #222;
-    --black2: #999;
   }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-/* =============== Navigation ================ */
 .navigation {
   position: fixed;
   width: 300px;
@@ -105,8 +101,6 @@ body {
   pointer-events: none;
 }
 
-
-/* ===================== navbar-top===================== */
 .main {
   position:relative;
   width: calc(100% - 300px);
@@ -141,26 +135,8 @@ body {
   cursor: pointer;
 }
 
-.search {
-  position: relative;
-  width: 400px;
-  margin: 0 10px;
-}
-
-.search label {
-  position: relative;
-  width: 100%;
-}
-
-.search label input {
-  width: 100%;
-  height: 40px;
-  border-radius: 40px;
-  padding: 5px 20px;
-  padding-left: 35px;
-  font-size: 18px;
-  outline: none;
-  border: 1px solid var(--black2);
+.image{
+  width: 100px;
 }
 
 .footer {
@@ -172,16 +148,7 @@ body {
   color: var(--white);
   
 }
-.user {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-}
+
 .titre{
  background-color:var(--vert); 
  padding: 10px;
@@ -198,20 +165,21 @@ body {
 }
 
 
-
-
-
-.eye-icon {
-  width: 20px;
-  height: 20px;
-  margin-left: -10%;
-  margin-top: 2%; /* Adjusted margin for better positioning */
-  cursor: pointer;
-  fill: #888;
+.card1{
+  position: relative;
+  background: var(--vert);
+  border-radius: 10px;
+  border: 5px solid rgb(218, 210, 4);
+  width: 200px;
+  height: 150px;
+  text-align: center;
+  color:  var(--white);
 }
 
+
+
 .eye-icon.open {
-  fill: #4CAF50; /* Color of the SVG icon when password is visible */
+  fill: #4CAF50; 
 }
 .page_login {
   background-color: #fff;
@@ -223,9 +191,6 @@ body {
   border-radius: 0.5rem;
   box-shadow: 2px 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-/* frontoffice css */
-
-
 
 @media (max-width: 1280px) {
   boby{
@@ -267,6 +232,17 @@ body {
   }
   .main.active {
     left: 300px;
+  }
+
+  .card1{
+    position: relative;
+    background: var(--vert);
+    border-radius: 10px;
+    border: 5px solid rgb(218, 210, 4);
+    width: 100px;
+    height: 150px;
+    margin-left: 50px;
+   
   }
   
 }

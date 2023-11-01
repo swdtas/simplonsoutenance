@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register'); // Affiche le formulaire d'inscription
+        return view('auth.register'); 
     }
 
     /**
@@ -76,7 +76,7 @@ class RegisteredUserController extends Controller
         $user = User::findOrFail($id);
 
         // Affiche la vue 'auth.edit' avec les données de l'utilisateur
-        return view('auth.edit', compact('user'));
+        return view('backoffice.edit_user', compact('user'));
     }
 
     /**
@@ -107,7 +107,7 @@ class RegisteredUserController extends Controller
         $user->update($data);
 
         // Redirige l'utilisateur vers la liste des utilisateurs avec un message de succès
-        return redirect()->route('userList')->with('success', 'Utilisateur mis à jour avec succès.');
+        return redirect()->route('user')->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
     /**
@@ -118,9 +118,7 @@ class RegisteredUserController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        UserHelper::deleteUser($id); // Appelle la méthode pour supprimer l'utilisateur
-
-        // Redirige l'utilisateur vers la liste des utilisateurs avec un message de succès
+        UserHelper::deleteUser($id);
         return ResponseHelper::redirectWithSuccess('user', 'Utilisateur supprimé avec succès.');
     }
 
@@ -132,10 +130,7 @@ class RegisteredUserController extends Controller
      */
     public function show($id): View
     {
-        // Récupère l'utilisateur correspondant à l'ID fourni
         $user = User::findOrFail($id);
-
-        // Affiche la vue 'auth.show' avec les données de l'utilisateur
         return view('auth.show', compact('user'));
     }
 }

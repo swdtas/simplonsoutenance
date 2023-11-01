@@ -10,9 +10,10 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="nom_categorie">Nom de la Catégorie :</label>
-                    <input type="text" class="form-control" id="nom_categorie" name="nom_categorie" value="{{ old('nom_categorie', $category->nom_categorie) }}">
+                    <input type="text" class="form-control" id="nom_categorie" name="nom_categorie"
+                        value="{{ old('nom_categorie', $category->nom_categorie) }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary  mt-3">Enregistrer</button>
             </form>
 
         </div>

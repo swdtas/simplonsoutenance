@@ -3,10 +3,8 @@
         <div class="toggle">
             <ion-icon name="menu-outline"></ion-icon>
         </div>
-        <div class="search">
-            <label>
-                <input type="text" placeholder="Search here">
-            </label>
+        <div class="image">
+             <img src="{{ asset('images/image2.jpg') }}"  alt="logo" class="img-fluid">
         </div>               
         <div class="user">
          <span id="logoutButton" class="icon">

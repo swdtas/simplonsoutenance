@@ -14,9 +14,9 @@
         data-bs-target="#confirm-user-deletion-modal"
     >{{ __('Supprimer le compte') }}</button>
 
-    <div class="modal fade p-3" id="confirm-user-deletion-modal" tabindex="-1" aria-labelledby="confirm-user-deletion-modal-label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div class="modal fade modal" id="confirm-user-deletion-modal" tabindex="-1" aria-labelledby="confirm-user-deletion-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content m-3">
                 <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
                     @csrf
                     @method('delete')
@@ -24,10 +24,6 @@
                     <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                         {{ __('Êtes-vous sûr de vouloir supprimer votre compte ?') }}
                     </h4>
-
-                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-200">
-                        {{ __("Une fois votre compte supprimé, toutes ses ressources et données seront définitivement effacées. Veuillez entrer votre mot de passe pour confirmer que vous souhaitez supprimer définitivement votre compte.") }}
-                    </p>
 
                     <div class="mt-6">
                         <label for="password" class="form-label">{{ __('Mot de passe') }}</label>

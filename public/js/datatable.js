@@ -12,12 +12,3 @@ $(document).ready(function(){
 
 });
 
-// modal
-// Attachez un gestionnaire d'événements de clic aux boutons "Détail"
-$(document).on('click', '.detail-btn', function () {
-    // Obtenez l'ID de l'utilisateur associé au bouton cliqué
-    var userId = $(this).data('user-id');
-    
-    // Affichez la fenêtre modale correspondante en utilisant l'ID de l'utilisateur
-    $('#userDetailModal' + userId).modal('show');
-});

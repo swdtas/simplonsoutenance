@@ -1,5 +1,5 @@
 <aside>
-<div class="">
+    <div>
         <div class="navigation">
             <ul>
                 <li>
@@ -7,8 +7,13 @@
                         <span class="icon">
                             <ion-icon name="person-circle-outline"></ion-icon>
                         </span>
-                        <span class="title">{{ Auth::user()->name }} {{ Auth::user()->role }}</span>
+                        <div class="bloc">
+                        <span class="title">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
+                        <span class="title">{{ Auth::user()->role }}</span>
+                        </div>
+                      
                     </a>
+                  
                 </li>
                 <li>
                     <a href="{{ route('accueil') }}">
@@ -63,4 +68,5 @@
                 </li>
             </ul>
         </div> 
+        </div>
 </aside>
