@@ -1,47 +1,104 @@
-@extends('layouts.main')
+@extends('layouts.layout.app')
+@section('content')
 
-@section('body')
-<div class="">
-    <div class="col offset-1">
-        <h1 class="message">BIENVENUE SUR BIO</h1>
-        <div class="text-dark">
-            Plongez dans l'expérience d'un mode de vie plus sain. Bienvenue dans notre univers bio, où chaque achat
-            soutient votre bien-être et notre planète.
+<div class="container-fluid p-0">
+
+    <div class="row mb-2 text-end mb-xl-3">
+        <div class="col-auto d-none d-sm-block">
+            <h3 class="color1"><strong>Tableau de </strong> Bord</h3>
         </div>
     </div>
-</div>
 
-<div class="cardBox">
-    <div class="card1 m-3">
-        <div>
-            <div>
-                <p>Nombre de catégories disponibles : {{ $numberOfCategories }}</p>
-            </div>
-        </div>
-    </div>
-    <div class=" m-3 row d-flex flex-wrap">
-        @forelse($categories as $category)
-        <div class=" col-3 cardBox ">
-            <div class="card1">
-                <div>
-                    <div class="cardName">
-                        <p>{{ $category->nom_categorie }}</p>
-                    </div>
-                    <div class="category">
-                        <p>Nombre de produits : {{ $productsCountByCategory[$category->id] }}</p>
-                    </div>
+  <div class="row">
+    <div class="col-xl-6 col-xxl-5 d-flex">
+      <div class="w-100">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card cardBox">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <p class="card-tite">Les Offres du Jour</p>
+                  </div>
+                  <div class="col-auto">
+
+                  </div>
                 </div>
+                <h1 class="mt-1 mb-3 text-info">2.382</h1>
+                <div class="mb-0">
+                  <span class="badge badge-primary-light"> <i class="mdi mdi-arrow-bottom-right"></i>#
+                  </span>
+                  <span class="text-muted"></span>
+                </div>
+              </div>
             </div>
+            <div class="card cardBox">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <p class=" card-tite">Chercheurs d'emploi</p>
+                  </div>
+
+                  <div class="col-auto">
+
+                  </div>
+                </div>
+                <h1 class="mt-1 text-info mb-3">14.212</h1>
+                <div class="mb-0">
+                    <span class="badge badge-primary-light"> <i class="mdi mdi-arrow-bottom-right"></i>#
+                    </span>
+                    <span class="text-muted"></span>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card cardBox">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <p class="card-tite">Candidats du Jour</p>
+                  </div>
+
+                  <div class="col-auto">
+
+                  </div>
+                </div>
+                <h1 class="mt-1 text-info mb-3">$21.300</h1>
+                <div class="mb-0">
+                    <span class="badge badge-primary-light"> <i class="mdi mdi-arrow-bottom-right"></i>#
+                    </span>
+                    <span class="text-muted"></span>
+                  </div>
+              </div>
+            </div>
+            <div class="card cardBox">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <p class="card-titel">Entrepises</p>
+                  </div>
+
+                  <div class="col-auto">
+
+                  </div>
+                </div>
+                <h1 class="mt-1 text-info  mb-3">64</h1>
+                <div class="mb-0">
+                    <span class="badge badge-primary-light"> <i class="mdi mdi-arrow-bottom-right"></i>#
+                    </span>
+                    <span class="text-muted"></span>
+                  </div>
+              </div>
+            </div>
+          </div>
         </div>
-        @if($loop->iteration % 4 === 0)
-    </div>
-    <div class="d-flex flex-wrap">
-        @endif
-        @empty
-        <div class="col-12">
-            <p>Aucun produit disponible pour cette catégorie.</p>
-        </div>
-        @endforelse
+      </div>
     </div>
 
-    @endsection
+    <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-1">
+        @include('backoffice.GestionUser.calendar')
+    </div>
+  </div>
+</div>
+@endsection

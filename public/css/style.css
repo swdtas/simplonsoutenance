@@ -1,4 +1,4 @@
- @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
 * {
     font-family: "Ubuntu", sans-serif;
     margin: 0;
@@ -6,263 +6,164 @@
     box-sizing: border-box;
   }
   :root {
-    --vert: #127d04;
+    --violet: #a218b4;
     --white: #fff;
+    --gray: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
   }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
-}
-.navigation {
-  position: fixed;
-  width: 300px;
-  height: 100%;
-  background: var(--vert);
-  border-left: 10px solid var(--vert);
-  transition: 0.5s;
-  overflow: hidden;
-  padding:50px;
-}
-.navigation.active {
-  width: 80px;
-}
 
-.navigation ul {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
 }
-
-.navigation ul li {
-  position: relative;
-  width: 100%;
-  list-style: none;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-}
-
-.navigation ul li:hover,
-.navigation ul li.hovered {
-  background-color: var(--white);
-}
-
-.navigation ul li:nth-child(1) {
-  margin-bottom: 40px;
-  pointer-events: none;
-}
-
-.navigation ul li a {
-  position: relative;
-  display: block;
-  margin: 0;
-  width: 100%;
-  display: flex;
-  text-decoration: none;
-  color: var(--white);
-}
-.navigation ul li:hover a,
-.navigation ul li.hovered a {
-  color: var(--vert);
-}
-
-.navigation ul li a .icon {
-  position: relative;
-  display: block;
-  min-width: 60px;
-  height: 60px;
-  line-height: 75px;
-  text-align: center;
-}
-.navigation ul li a .icon ion-icon {
-  font-size: 1.75rem;
-}
-
-.navigation ul li a .title {
-  position: relative;
-  display: block;
-  padding: 0 10px;
-  height: 60px;
-  line-height: 60px;
-  text-align: start;
-  white-space: nowrap;
-}
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border-radius: 50%;
-  box-shadow: 35px 35px 0 10px var(--white);
-  pointer-events: none;
-}
-
-.main {
-  position:relative;
-  width: calc(100% - 300px);
-  left: 300px;
-  min-height: 100vh;
-  background: var(--white);
-  transition: 0.5s;
-  padding-top: 10px;
-}
-.main.active {
-  width: calc(100% - 80px);
-  left: 100px;
-}
-
-.topbar {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-
-.toggle {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-  cursor: pointer;
-}
-
-.image{
-  width: 100px;
-}
-
-.footer {
-  padding-top: 5px;
-  position:relative;
-  width: 100%;
-  background: var(--vert);
-  text-align: center;
-  color: var(--white);
-  
-}
-
-.titre{
- background-color:var(--vert); 
- padding: 10px;
- color: var(--white);
-}
-
-.form {
-  background-color: #fff;
-  display: block;
-  padding: 3rem;
-  margin: auto;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-
-.card1{
-  position: relative;
-  background: var(--vert);
-  border-radius: 10px;
-  border: 5px solid rgb(218, 210, 4);
-  width: 200px;
-  height: 150px;
-  text-align: center;
-  color:  var(--white);
-}
-
-
-
-.eye-icon.open {
-  fill: #4CAF50; 
-}
-.page_login {
-  background-color: #fff;
-  position: relative;
-  display: block;
-  padding: 1rem;
-  margin-top: 2cm;
-  max-width: 100%;
-  border-radius: 0.5rem;
-  box-shadow: 2px 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-@media (max-width: 1280px) {
-  boby{
-      height: 800px;
-  }
-  .titre {
-    font-size: 24px;
-  }
-  .container {
-    max-width: 100%;
-  }
-  .img-fluid {
-    width: 100%;
-  }
- 
-    .form {
-      padding: 10px;
-      margin-top: 5cm;
-    }
-    .form,p {
-      margin-top: 10cm;
-    }
-}
-
-
-
-/* ====================== Responsive Design ========================== */
-@media (max-width: 991px) {
-  .navigation {
-    left: -300px;
-  }
-  .navigation.active {
-    width: 300px;
-    left: 0;
-  }
-  .main {
-    width: 100%;
-    left: 0;
-  }
-  .main.active {
-    left: 300px;
+.bouton {
+    color: white!important;
+    background: linear-gradient(to right, #0004ff, #a218b4);
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
   }
 
-  .card1{
+  .bouton:hover {
+    border-color: #c403dd;
+    color: rgb(66, 7, 202)!important;
+    background:white!important;
+
+  }
+  .color1{
+    color: #950EB0!important;
+  }
+
+
+  .sidebar, .sidebar-brand, .sidebar-nav, .sidebar-item, .sidebar-link {
+    background-color:#950EB0!important;
+    color: #f3f3f3!important;
+    font-size: 16px!important; /* Adjust the font size as needed */
+    box-shadow: 0 10px 4px rgba(0, 0, 0, 0.1)!important;; /* Adjust shadow values as needed */
+}
+
+.sidebar-brand {
+    background-color: #950EB0!important;
+    font-size: 16px!important;
+    box-shadow: 0 2px 10px rgba(230, 207, 207, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 5px solid white;
+}
+
+.sidebar-brand .sidebar-brand-text {
+    display: none;
+}
+
+.sidebar-brand::before {
+    content: "";
+    display: inline-block;
+    width: 150px;
+    height: 100px;
+    background-image: url('../images/logo1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+
+.navbar-bg {
+    background-color: #950EB0!important;
+    color: #f3f3f3!important;
+    font-size: 16px!important;
+    box-shadow: 0 10px 4px rgba(0, 0, 0, 0.1)!important;
+}
+
+.navbar-brand {
+    background-color: #950EB0!important;
+    font-size: 16px!important;
+    box-shadow: 0 2px 10px rgba(230, 207, 207, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.navbar-nav .nav-item {
+    background-color: #950EB0!important;
+}
+
+.nav-link {
+    color: #f3f3f3!important;
+}
+.cardBox1 {
+    background-image: url('https://img.freepik.com/photos-gratuite/fond-texture-mur-peint-blanc_53876-138197.jpg?w=826&t=st=1700409119~exp=1700409719~hmac=9f6ae6988ea92e9be201b276b4de4e4002a8aa2fc626dece28de34922e6ac0c3');
+    background-size: cover;
+    background-position: center;
+
+  }
+
+
+  .card p {
+    margin: 0; /* Réinitialise la marge du paragraphe à l'intérieur de la boîte */
+    font-size: 16px;
+    color: #fdfdfd;
+  }
+  .cardBox {
+    background-image: url('https://img.freepik.com/psd-gratuit/fond-fumee-bleu-violet-ia-generative_587448-1922.jpg?w=1060&t=st=1700409820~exp=1700410420~hmac=69c70b6f256e625a3ea60d521318cd0877011a1b5868f1e436a0f94d319a6610');
+    background-size: cover;
+    background-position: center;
     position: relative;
-    background: var(--vert);
-    border-radius: 10px;
-    border: 5px solid rgb(218, 210, 4);
-    width: 100px;
-    height: 150px;
-    margin-left: 50px;
-   
+
   }
-  
+
+  /* Ajoutez ce style à votre fichier CSS ou dans une balise <style> dans l'en-tête de votre document HTML */
+
+/* Style pour la carte qui contient le calendrier */
+.card {
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-@media (max-width: 480px) {
-  .navigation {
+
+/* Style pour l'en-tête de la carte */
+.card-header {
+    background-color: #ebeef1;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 15px 15px 0 0;
+}
+
+/* Style pour le titre de la carte */
+.card-title {
+    margin-bottom: 0;
+}
+
+/* Style pour le corps de la carte */
+.card-body {
+    padding: 20px;
+}
+
+/* Style pour le conteneur du calendrier */
+.chart {
     width: 100%;
-    left: -100%;
-    z-index: 1000;
-  }
-  .navigation.active {
-    width: 100%;
-    left: 0;
-  }
-  .toggle {
-    z-index: 10001;
-  }
-  .main.active .toggle {
-    color: #fff;
-    position: fixed;
-    right: 0;
-    left: initial;
-  }
+    height: 400px; /* Ajustez la hauteur selon vos besoins */
+}
+
+/* Style pour les boutons du calendrier */
+.fc-button {
+    color: white!important;
+    background: linear-gradient(to right, #0004ff, #a218b4)!important;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+/* Style pour les boutons de navigation du calendrier */
+.fc-header-toolbar button {
+    background: linear-gradient(to right, #0004ff, #a218b4)!important;
+    color: #ffffff;
+}
+
+/* Style pour le texte de l'en-tête du calendrier */
+#calendarTitle {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #9b0396;
 }

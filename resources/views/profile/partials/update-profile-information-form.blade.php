@@ -1,12 +1,14 @@
 <section>
     <header class="mb-4">
-        <h2 class="text-lg font-medium text-gray-900">
-            Informations du Profil
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
+        <div class="container-fluid p-0">
+            <div class="row mb-2 text-end mb-xl-3">
+                <div class="col-auto d-none d-sm-block">
+                    <h3 class="color1"><strong> Informations du</strong>   Profil</h3>
+                </div>
+            </div>
+        <h4 class="mt-1  text-dark text-gray-900">
             Mettez à jour les informations de votre compte et votre adresse e-mail.
-        </p>
+        </h4>
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">

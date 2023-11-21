@@ -1,6 +1,11 @@
-@extends('layouts.main')
-@section('body')
+@extends('layouts.layout.app')
+@section('content')
 <div class="container  ">
+    <div class="row mb-2 text-end mb-xl-3">
+        <div class="col-auto d-none d-sm-block">
+            <h3 class="color1"><strong>Enregistrement </strong>Utilisateur</h3>
+        </div>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <!-- Name -->
@@ -21,7 +26,7 @@
   </div>
 
         <!-- Email Address -->
-          
+
 
         <div class="mt-2 col-8">
             <x-input-label for="email" :value="__('Email')" />
@@ -53,9 +58,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-2">
-            <button type="submit" name="connecter" class="btn btn-success p-2 ">
-             Valider
-             </button>
+            <button type="submit" class="btn btn-primary">   <i class="align-middle" data-feather="check-circle"></i>Enregistrer</button>
         </div>
     </form>
 

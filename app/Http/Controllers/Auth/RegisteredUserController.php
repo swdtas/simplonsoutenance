@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register'); 
+        return view('auth.register');
     }
 
     /**
@@ -64,7 +64,7 @@ class RegisteredUserController extends Controller
         $users = User::all(); // Récupère tous les utilisateurs de la base de données
 
         // Affiche la vue 'backoffice.user' avec la liste des utilisateurs
-        return view('backoffice.user', ['users' => $users]);
+        return view('backoffice.GestionUser.user', ['users' => $users]);
     }
 
     /**
@@ -76,7 +76,7 @@ class RegisteredUserController extends Controller
         $user = User::findOrFail($id);
 
         // Affiche la vue 'auth.edit' avec les données de l'utilisateur
-        return view('backoffice.edit_user', compact('user'));
+        return view('backoffice.GestionUser.edit_user', compact('user'));
     }
 
     /**

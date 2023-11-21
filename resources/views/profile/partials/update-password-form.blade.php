@@ -1,12 +1,14 @@
 <section>
-    <header class="mb-4">
-        <h2 class="text-lg font-medium text-gray-900">
-            Mettre à Jour le Mot de Passe
-        </h2>
+    <header class="mb-4 mt-2">
+        <div class="row mt-2 mb-2 text-end mb-xl-3">
+            <div class="col-auto d-none d-sm-block">
+                <h3 class="color1"><strong> Mettre à Jour le </strong> Mot de Passe</h3>
+            </div>
+        </div>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <h4 class="mt-2 text-sm text-gray-600">
             Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester en sécurité.
-        </p>
+        </h4>
     </header>
 
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
