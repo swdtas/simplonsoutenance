@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('statut_matrimonial')->nullable();
             $table->foreignIdFor(User::class); //user_id
             $table->string('photo')->nullable();
-            $table->enum('statut', ['valide', 'refuse'])->default('refuse');
+            $table->enum('statut', [ 'en attente','valide', 'refuse'])->default('en attente');
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@
         <div class="col-auto d-none d-sm-block">
             <h3 class="color1"><strong>Gestion </strong>Entreprises</h3>
         </div>
-        <h3 class="color1">Listes des entreprise inscritent</h3>
+        <h3 class="color1">{{$title}}</h3>
     </div>
     <button class="btn bouton"  data-toggle="modal"  data-target="#addEnterpriseModal">
         <ion-icon class="ml-3" name='person-add-outline'></ion-icon>ajouter une entreprise
@@ -27,55 +27,43 @@
                             <th>Logo</th>
                             <th>Nom</th>
                             <th>Description</th>
+                            <th>Statut</th>
+                             <th>Actions</th>
                             <th>Adresse</th>
                             <th>Site Web</th>
                             <th>Date de Création</th>
                             <th>Utilisateur</th>
                             <th>Région</th>
-                            <th>Statut</th>
-                            {{-- <th>Action</th> --}}
+
+                            {{-- <th>Actions</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($entreprises as $entreprise)
-                            @if ($entreprise->statut === 'valide')
+                            @if ($entreprise->statut === 'en attente')
                                 <tr>
                                     <td>
                                         <img src="{{ asset('images/image02.png') }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
                                     </td>
                                     <td>{{ $entreprise->nom }}</td>
                                     <td>{{ $entreprise->description }}</td>
+                                    <td>{{ $entreprise->statut }}</td>
+
+                                    <td>
+                                        <form action="{{ route('valider.entreprise', ['id' => $entreprise->id]) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success btn-sm">Valider</button>
+                                        </form>
+                                        <form action="{{ route('refuser.entreprise', ['id' => $entreprise->id]) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
+                                        </form>
+                                    </td>
                                     <td>{{ $entreprise->adresse }}</td>
                                     <td>{{ $entreprise->site_web }}</td>
                                     <td>{{ $entreprise->date_creation }}</td>
                                     <td>{{ $entreprise->user->name }}</td>
                                     <td>{{ $entreprise->region->nom }}</td>
-                                    <td>{{ $entreprise->statut }}</td>
-                                    {{-- <td>
-                                        <a href="{{ route('entreprises.edit', $entreprise->id) }}"
-                                            class="btn btn-primary m-2 btn-sm">
-                                            <i class="align-middle" data-feather="edit-2"></i>
-                                            Modifier
-                                        </a>
-
-                                        <button class="btn btn-info m-2 btn-sm" data-toggle="modal"
-                                            data-target="#entrepriseDetailModal{{ $entreprise->id }}">Détail
-                                            <i class="align-middle" data-feather="eye"></i>
-                                        </button>
-
-                                        <a class="btn btn-danger"
-                                            href="{{ route('entreprises.destroy', ['id' => $entreprise->id]) }}"
-                                            onclick="event.preventDefault(); if(confirm('Voulez-vous vraiment supprimer cette entreprise ?')) document.getElementById('delete-form-{{ $entreprise->id }}').submit();">
-                                            <i class="align-middle" data-feather="trash"></i>
-                                            Supprimer
-                                        </a>
-                                        <form id="delete-form-{{ $entreprise->id }}"
-                                            action="{{ route('entreprises.destroy', ['id' => $entreprise->id]) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </td> --}}
                                 </tr>
                             @endif
                         @endforeach

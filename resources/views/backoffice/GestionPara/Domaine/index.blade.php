@@ -24,11 +24,15 @@
     @include('backoffice.GestionPara.Region.create')
     </div>
 </div>
-<div class="row">
-<div class=" col-lg-6 col-xl-12 col-xxl-6 d-flex">
-<div class="card-body">
-    <table id="datatables-reponsive" class="table table-striped" style="width:100%">
-        <thead>
+<div class="row d-flex">
+    <div class="col-12 col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Listes des domaines</h5>
+
+            </div>
+            <table class="table">
+             <thead>
             <tr>
                 <th>Domaines</th>
                 <th>Action</th>
@@ -97,10 +101,13 @@
     </table>
 </div>
 </div>
-</div>
-<div class=" col-lg-6 col-xl-12 col-xxl-6 d-flex">
-    <div class="card-body">
-        <table id="datatables-reponsive" class="table table-striped" style="width:100%">
+<div class="col-12 col-xl-6">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Listes des regions</h5>
+            
+        </div>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Regions</th>
@@ -163,13 +170,9 @@
             </div>
 
                 @endforeach
-
             </tbody>
         </table>
     </div>
-    </div>
-    </div>
-</div>
 </div>
 
 @endsection

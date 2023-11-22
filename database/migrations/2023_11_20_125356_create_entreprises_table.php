@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('site_web');
             $table->date('date_creation')->nullable();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Region::class);  //region_id
+            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(Region::class)->constrained();  //region_id
             $table->string('logo')->nullable();
-            $table->enum('statut', ['valide', 'refuse'])->default('refuse');
+            $table->enum('statut', [ 'en attente','valide', 'refuse'])->default('en attente');
             $table->timestamps();
         });
     }

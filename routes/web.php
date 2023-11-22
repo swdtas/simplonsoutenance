@@ -7,7 +7,7 @@ use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\EntrepriseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +42,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('users', RegisteredUserController::class);
     Route::resource('domaines',DomaineController::class);
     Route::resource('regions',RegionController::class);
-
+    Route::resource('entreprises',EntrepriseController::class);
+    Route::get('/entreprise-attente', [EntrepriseController::class, 'attente'])->name('entreprises.attente');
+    Route::post('/valider-entreprise/{id}', [EntrepriseController::class, 'validerEntreprise'])->name('valider.entreprise');
+    Route::post('/refuser-entreprise/{id}', [EntrepriseController::class, 'refuserEntreprise'])->name('refuser.entreprise');
+    Route::get('/liste-entreprise-refuser', [EntrepriseController::class, 'refuser'])->name('listes.refuser.entreprise');
     //Fin mis a jour
 
 

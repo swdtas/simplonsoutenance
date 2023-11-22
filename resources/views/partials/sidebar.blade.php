@@ -26,10 +26,11 @@
           <i class="align-middle" data-feather="list" style="font-size: 50px; color: white;"></i> <span class="align-middle">Gestions Entreprises</span>
         </a>
         <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-          <li class="sidebar-item"><a class='sidebar-link' href='index.html'>Incritent</a></li>
+          <li class="sidebar-item"><a class='sidebar-link' href='{{ route('entreprises.index') }}'>Incritent</a></li>
           <li class="sidebar-item"><a class='sidebar-link'
-              href='https://demo.adminkit.io/dashboard-ecommerce'>En attente de validation</a></li>
-
+              href='{{ route('entreprises.attente') }}'>En attente de validation</a></li>
+              <li class="sidebar-item"><a class='sidebar-link'
+                href='{{ route('listes.refuser.entreprise') }}'>Refuser</a></li>
         </ul>
       </li>
       <li class="sidebar-item">
