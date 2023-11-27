@@ -11,13 +11,10 @@ class Chercheur extends Model
 {
     use HasFactory,HasUuids;
     protected $fillable = [
-        'nom',
-        'prenom',
         'adresse',
         'date_naissance',
         'genre',
         'telephone',
-        'email',
         'statut_matrimonial',
         'user_id',
         'photo',
@@ -31,8 +28,8 @@ class Chercheur extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function candidats()
+    public function candidas()
     {
-        return $this->hasMany(Candidat::class);
+        return $this->hasOne(Candidat::class);
     }
 }

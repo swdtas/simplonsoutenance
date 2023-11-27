@@ -19,7 +19,7 @@
             <li><a class="nav-link scrollto" href="{{ route('accueil') }}">Accueil</a></li>
         <li><a class="nav-link scrollto" href="{{ route('offre') }}">Offres d'emploi</a></li>
         <li><a class="nav-link scrollto" href="{{ route('candidat') }}">Profils candidats</a></li>
-        <li><a class="nav-link scrollto" href="{{ route('actualite') }}">Actualites</a></li>
+        <li><a class="nav-link scrollto" href="{{ route('entreprise') }}">Actualites</a></li>
             </ul>
           </div>
           <div class="col-lg-4 col-md-6 footer-newsletter">

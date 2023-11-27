@@ -17,7 +17,12 @@ public function technologies()
 {
     return $this->belongsToMany(Technologie::class, 'domaine_technologie', 'domaine_id', 'technologie_id');
 }
- public function candidats():HasMany
+ public function candidas():HasMany
+    {
+        return $this->hasMany(Candidat::class);
+    }
+
+    public function offre():HasMany
     {
         return $this->hasMany(Candidat::class);
     }

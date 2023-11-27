@@ -40,5 +40,4 @@ function togglePasswordVisibility() {
       eyeIcons.forEach(icon => icon.classList.remove("open"));
   }
 }
-// login
 

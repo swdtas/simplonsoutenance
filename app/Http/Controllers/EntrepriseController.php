@@ -26,7 +26,11 @@ class EntrepriseController extends Controller
      */
     public function create()
     {
-
+        $regions=Region::all();
+        $entreprises =Entreprise::all();
+        $regions=Region::all();
+        $entreprises =Entreprise::all();
+        return view('backoffice.GestionEntreprise.create',  ['title' => 'Ajouter une une' , 'entreprises' => $entreprises,'regions' => $regions]);
     }
 
     /**
@@ -35,33 +39,33 @@ class EntrepriseController extends Controller
     public function store(StoreEntrepriseRequest $request)
     {
        try {
-           $user = User::create([
-               'name' => $request->input('name'),
-               'surname' => $request->input('surname'),
-               'email' => $request->input('email'),
-               'password' => Hash::make($request->input('password')),
-               'role' => 'entreprise',
-           ]);
-           $statut = 'en attente';
-           $logo = $request->file('logo');
-           $logoName = null;
+        $user = User::create([
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'role' => 'entreprise',
+        ]);
+        $statut = 'en attente';
+        $logo = $request->file('logo');
+        $logoName = null;
 
-           if ($logo) {
-               $logoName = time() . '.' . $logo->getClientOriginalExtension();
-               $logo->storeAs('public/logos', $logoName);
-           }
+        if ($logo) {
+            $logoName = time() . '.' . $logo->getClientOriginalExtension();
+            $logo->storeAs('public/logos', $logoName);
+        }
 
-            Entreprise::create([
-               'nom' => $request->input('nom'),
-               'description' => $request->input('description'),
-               'adresse' => $request->input('adresse'),
-               'site_web' => $request->input('site_web'),
-               'date_creation' => $request->input('date_creation'),
-               'region_id' => $request->input('region_id'),
-               'logo' => $logoName,
-               'statut' => $statut,
-               'user_id' => $user->id,
-           ]);
+        Entreprise::create([
+            'nom' => $request->input('nom'),
+            'description' => $request->input('description'),
+            'adresse' => $request->input('adresse'),
+            'site_web' => $request->input('site_web'),
+            'date_creation' => $request->input('date_creation'),
+            'region_id' => $request->input('region_id'),
+            'logo' => $logoName,
+            'statut' => $statut,
+            'user_id' => $user->id,
+        ]);
 
            return redirect()->route('entreprises.index')
                       ->with('success','Entreprise créée avec succès.');

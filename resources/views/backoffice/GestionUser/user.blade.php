@@ -27,15 +27,19 @@
                         <th>Nom</th>
                         <th>Prénom(s)</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ($users as $user)
+                    @if (in_array($user->role, ['user', 'admin']))
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->surname }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ $user->role }}</td>
                             <td>
                                 <a href="{{ route('editUser', $user->id) }}" class="btn btn-primary m-2 btn-sm">
                                     <i class="align-middle" data-feather="edit-2"></i>
@@ -59,6 +63,7 @@
                                 </form>
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

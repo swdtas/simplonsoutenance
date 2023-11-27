@@ -18,7 +18,7 @@ class Region extends Model
     {
         return $this->hasMany(Entreprise::class);
     }
-    public function candidats():HasOne
+    public function candidas():HasOne
     {
         return $this->hasOne(Candidat::class);
     }

@@ -14,13 +14,10 @@ return new class extends Migration
     {
         Schema::create('chercheurs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('nom');
-            $table->string('prenom');
             $table->string('adresse');
             $table->date('date_naissance')->nullable();
             $table->string('genre')->nullable();
             $table->string('telephone')->nullable();
-            $table->string('email')->unique();
             $table->string('statut_matrimonial')->nullable();
             $table->foreignIdFor(User::class); //user_id
             $table->string('photo')->nullable();

@@ -10,7 +10,7 @@
     </div>
 
   <div class="row">
-    <div class="col-xl-6 col-xxl-5 d-flex">
+    <div class="col-xl-6 col-xxl-6 d-flex">
       <div class="w-100">
         <div class="row">
           <div class="col-sm-6">
@@ -38,9 +38,7 @@
                   <div class="col mt-0">
                     <p class=" card-tite">Chercheurs d'emploi</p>
                   </div>
-
                   <div class="col-auto">
-
                   </div>
                 </div>
                 <h1 class="mt-1 text-info mb-3">14.212</h1>
@@ -59,9 +57,7 @@
                   <div class="col mt-0">
                     <p class="card-tite">Candidats du Jour</p>
                   </div>
-
                   <div class="col-auto">
-
                   </div>
                 </div>
                 <h1 class="mt-1 text-info mb-3">$21.300</h1>
@@ -96,7 +92,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-1">
+    <div class="col-12 col-md-6 col-xxl-6 d-flex order-2 order-xxl-1">
         @include('backoffice.GestionUser.calendar')
     </div>
   </div>

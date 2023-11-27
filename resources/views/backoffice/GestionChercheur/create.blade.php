@@ -1,4 +1,5 @@
 @extends('layouts.layout.app')
+
 @section('content')
-@csrf
+@include('backoffice.GestionChercheur.form')
 @endsection

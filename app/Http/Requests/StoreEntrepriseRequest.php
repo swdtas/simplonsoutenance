@@ -7,7 +7,9 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreEntrepriseRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Détermine si l'utilisateur est autorisé à effectuer cette demande.
+     *
+     * @return bool
      */
     public function authorize(): bool
     {
@@ -15,14 +17,14 @@ class StoreEntrepriseRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Obtient les règles de validation qui s'appliquent à la demande.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'nom' => 'required|string|unique:entreprises',
+            'nom' => 'required|string|unique:entreprises|min:3|max:255',
             'description' => 'required|string',
             'adresse' => 'required|string',
             'site_web' => 'required|string',
@@ -35,7 +37,14 @@ class StoreEntrepriseRequest extends FormRequest
             'password' => 'required|string|min:8|confirmed',
         ];
     }
-    public function messages() {
+
+    /**
+     * Obtient les messages d'erreur personnalisés pour les règles définies ci-dessus.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
         return [
             'nom.required' => 'Le nom de l\'entreprise est obligatoire.',
             'nom.min' => 'Le nom de l\'entreprise doit contenir au moins 3 caractères.',
@@ -52,6 +61,7 @@ class StoreEntrepriseRequest extends FormRequest
             'logo.max' => 'Le logo ne peut pas dépasser :max kilo-octets.',
             'name.required' => 'Le nom de l\'utilisateur est obligatoire.',
             'surname.required' => 'Le prénom de l\'utilisateur est obligatoire.',
+            'name.unique' => 'L\' est  de l\'utilisateur est déjà utilisée.',
             'email.required' => 'L\'adresse e-mail de l\'utilisateur est obligatoire.',
             'email.email' => 'L\'adresse e-mail doit être une adresse e-mail valide.',
             'email.unique' => 'L\'adresse e-mail de l\'utilisateur est déjà utilisée.',

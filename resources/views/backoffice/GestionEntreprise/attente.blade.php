@@ -8,10 +8,6 @@
         </div>
         <h3 class="color1">{{$title}}</h3>
     </div>
-    <button class="btn bouton"  data-toggle="modal"  data-target="#addEnterpriseModal">
-        <ion-icon class="ml-3" name='person-add-outline'></ion-icon>ajouter une entreprise
-    </button>
-    @include('backoffice.GestionEntreprise.create')
     <div class="row mt-2">
         <div class="col-12">
             @if(session()->has('success'))
@@ -35,7 +31,7 @@
                             <th>Utilisateur</th>
                             <th>Région</th>
 
-                            {{-- <th>Actions</th> --}}
+
                         </tr>
                     </thead>
                     <tbody>
@@ -43,8 +39,9 @@
                             @if ($entreprise->statut === 'en attente')
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('images/image02.png') }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
+                                        <img src="{{ asset('storage/logos/' . $entreprise->logo) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
                                     </td>
+
                                     <td>{{ $entreprise->nom }}</td>
                                     <td>{{ $entreprise->description }}</td>
                                     <td>{{ $entreprise->statut }}</td>

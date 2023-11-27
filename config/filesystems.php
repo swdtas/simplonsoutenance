@@ -56,6 +56,26 @@ return [
             'throw' => false,
         ],
 
+        'logos' => [
+            'driver' => 'local',
+            'root' => public_path('logos'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'photos' => [
+            'driver' => 'local',
+            'root' => public_path('photos'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        
+        'cv' => [
+            'driver' => 'local',
+            'root' => public_path('cv'), // Adjust the directory to 'cv'
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*

@@ -3,11 +3,14 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CandidaController;
+use App\Http\Controllers\ChercheurController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\OffresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,26 +22,30 @@ use App\Http\Controllers\EntrepriseController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/espace-entreprise', [ FrontController::class, 'showEspaceEntreprise'])
-    ->name('espace_entreprise');
-Route::get('/entreprise-inscription', [EntrepriseController::class, 'FrontCreate'])
-    ->name('entreprise-inscritpion');
 
-    Route::get('/espace-entreprise', [ FrontController::class, 'showEspaceEntreprise'])
-    ->name('espace_entreprise');
+Route::get('/entreprise-inscription', [ FrontController::class, 'RegisterEntreprise'])
+    ->name('entreprise-inscritpion');
+Route::get('/chercheurs/create', [ChercheurController::class, 'create'])->name('chercheurs.create');
+Route::post('chercheurs/store', [ChercheurController::class, 'store'])->name('chercheurs.store');
 Route::get('/accueil', [ FrontController::class, 'showAccueil'])
     ->name('accueil');
+
     Route::get('/les-offres-emploi', [ FrontController::class, 'showOffre'])
     ->name('offre');
+
+Route::get('/les-offres-emploi/{region}', [ FrontController::class, 'showOffre'])->name('route.filtre');
+
     Route::get('/profil-candidat', [ FrontController::class, 'showCandidat'])
     ->name('candidat');
-    Route::get('/actualite', [ FrontController::class, 'showActualite'])
-    ->name('actualite');
+    Route::get('/entreprise', [ FrontController::class, 'showentreprise'])
+    ->name('entreprise');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified',])->group(function () {
     // Les route mise a jour
-    Route::get('/dashboard', [DashboardController::class, 'create'])
+    Route::get('/dashboard', [DashboardController::class, 'default'])
     ->name('dashboard');
+    Route::get('/dashboard-entreprise', [DashboardController::class, 'entreprise'])
+    ->name('dashboard.entreprise');
     Route::resource('users', RegisteredUserController::class);
     Route::resource('domaines',DomaineController::class);
     Route::resource('regions',RegionController::class);
@@ -47,18 +54,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/valider-entreprise/{id}', [EntrepriseController::class, 'validerEntreprise'])->name('valider.entreprise');
     Route::post('/refuser-entreprise/{id}', [EntrepriseController::class, 'refuserEntreprise'])->name('refuser.entreprise');
     Route::get('/liste-entreprise-refuser', [EntrepriseController::class, 'refuser'])->name('listes.refuser.entreprise');
+    Route::resource('offres',OffresController::class);
+    Route::get('/offres-du-jour', [OffresController::class, 'today'])->name('offres.today');
+    Route::resource('chercheurs', ChercheurController::class)->only(['index', 'show', 'edit', 'update', 'destroy']);
+    Route::get('/chercheurs-attente', [ChercheurController::class, 'attente'])->name('chercheur.attente');
+    Route::post('/valider-chercheur/{id}', [ChercheurController::class, 'validerChercheur'])->name('valider.chercheur');
+    Route::post('/refuser-chercheur/{id}', [ChercheurController::class, 'refuserChercheur'])->name('refuser.chercheur');
+    Route::get('/liste-chercheur-refuser', [ChercheurController::class, 'refuser'])->name('listes.refuser.chercheur');
+    Route::resource('candidas',CandidaController::class);
+    Route::get('/candidats-du-jour', [CandidaController::class, 'candidats'])->name('candidats.today');
+    Route::get('/candidas/{candida}/cv', [CandidaController::class, 'showCv'])->name('candidas.showCv');
     //Fin mis a jour
-
-
-
-
-
-    Route::get('/backoffice/user', [RegisteredUserController::class, 'lister'])->name('user');
-    Route::get('/user/{id}/edit', [RegisteredUserController::class, 'edit'])->name('editUser');
-    Route::put('/user/{id}', [RegisteredUserController::class, 'update'])->name('updateUser');
-    Route::get('/backoffice/user/{id}',  [RegisteredUserController::class, 'show'])->name('showUser');
-    Route::delete('/backoffice/user/{id}', [RegisteredUserController::class, 'destroy'])->name('deleteUser');
-
     Route::get('/backoffice/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/backoffice/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/backoffice/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -75,6 +81,16 @@ Route::middleware(['checkUserRole'])->group(function () {
     Route::delete('/backoffice/user/{id}', [RegisteredUserController::class, 'destroy'])->name('deleteUser');
 
 });
+Route::middleware(['auth', 'role:entreprise'])->group(function () {
+
+    Route::get('/nouvel_offre', 'EntrepriseController@nouvelOffre')->name('nouvel_offre');
+    Route::get('/liste_mes_offres', 'EntrepriseController@listeMesOffres')->name('liste_mes_offres');
+    Route::get('/modifier_profil_entreprise', 'EntrepriseController@modifierProfil')->name('modifier_profil_entreprise');
+    Route::get('/technologies_utilisees', 'EntrepriseController@technologiesUtilisees')->name('technologies_utilisees');
+});
+
+
+
 
 Route::get('/', function () {
     return view('login');

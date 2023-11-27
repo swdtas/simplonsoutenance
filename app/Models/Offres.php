@@ -19,4 +19,8 @@ class Offres extends Model
     {
         return $this->belongsTo(Entreprise::class);
     }
+    public function domaine()
+    {
+        return $this->belongsTo(Domaine::class);
+    }
 }
