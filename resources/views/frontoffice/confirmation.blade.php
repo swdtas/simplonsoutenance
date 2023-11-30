@@ -1,17 +1,13 @@
 @extends('layouts.main-front')
 
 @section('body')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Confirmation d'enregistrement</div>
+<section id="section1-offre" class="section1-confirmation">
+    <div class="container">
 
-                <div class="card-body">
-                    <p>Merci pour votre enregistrement. Nous avons bien reçu vos informations. Vous recevrez une réponse dans les 24 heures suivantes.</p>
-                </div>
-            </div>
-        </div>
+      <div class="d-flex p-5 mt-5 justify-content-between align-items-center">
+        {{-- <h2>Découvrez, Postulez,  <br>Évoluez, Réussissez, Épanouissez-vous.</h2> --}}
+        <h2>Merci pour votre enregistrement. Nous avons bien reçu vos informations. Vous recevrez une réponse dans les 24 heures suivantes.</h2>
+      </div>
     </div>
-</div>
+  </section>
 @endsection

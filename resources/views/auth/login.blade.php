@@ -14,11 +14,12 @@
             <div class="form-content">
             <form method="post" action="{{ route('login') }}">
             @csrf
-            <div class="form-info">
-				<h2>Login</h2>
+            <div class="form-info d-flex item m-5 text-center">
+                <h2>Connexion</h2>
+                <!-- Ajout de la classe mx-auto pour centrer l'image -->
+                <img src="{{ asset('images/logo1.png') }}" width="150px" alt="" class="mx-auto">
+            </div>
 
-
-			</div>
             <div class="email-w3l">
                     <span class="i1"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                     <input class="email" type="email" name="email" placeholder="Email"value="{{ old('email') }}" required autofocus autocomplete="username">

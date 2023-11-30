@@ -7,13 +7,13 @@
     </div>
     <h3 class="color1">Listes des chercheurs inscrits</h3>
 </div>
-
+@if (auth()->user()->role == 'admin')
 <a href="{{ route('chercheurs.create') }}">
     <button class="btn bouton">
         <ion-icon class="ml-3" name='person-add-outline'></ion-icon> Ajouter un chercheur
     </button>
 </a>
-
+@endif
 <div class="row">
     <div class="col-12">
         @if(session()->has('success'))

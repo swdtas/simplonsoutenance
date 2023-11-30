@@ -1,53 +1,101 @@
-
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid mr-2" style="max-height: 60px;">
-                    <h5 class="modal-title" id="loginModalLabel">Espace Entreprise</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-
-                            <div class="col-6">
-                                <img src="{{ asset('images/cover2.jpg') }}" alt="Image du Modal" class="img-fluid">
-                            </div>
-
-                            <div class="col-6 mt-5">
-                                <h2 class="color1">Connectez-vous </h2>
-                                <form class="mt-5" role="form" method="post" action="{{ route('login') }}">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="username" id="username">
-                                    </div>
-                                    <div class="mb-3 input-group">
-                                        <input type="password" class="form-control" placeholder="Mot de passe" name="password" id="password">
-                                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="rememberMe" checked>
-                                        <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
-                                    </div>
-                                    <div class="text-start">
-                                        <button class="btn btn-bg w-50" type="submit">Se connecter</button>
-                                        <h3 class="mb-0">Avez-vous un compte ? <a href="{{ route('entreprise-inscritpion') }}">Inscrivez-vous ici</a></h3>
-                                    </div>
-                                </form>
-                            </div>
+@extends('layouts.main-front')
+@section('body')
+<section id="section1-accueil" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+      <h1>Bienvenue<span> sur Recrutburkina</span></h1>
+      <h2> votre plateforme de  recherche d'emploi
+ dans le domaine de la technologie</h2>
+    </div>
+  </section>
+   <!-- ======= entreprise Section ======= -->
+   <section id="section2-accueil" class="section2-accueil">
+    <div class="container">
+        <div class="section-title">
+            <h2>Les entreprises de la semaine</h2>
+        </div>
+        <div class="row">
+            @foreach ($dernieresEntreprises as $entreprise)
+                <div class="col-lg-6 col-md-6 col-12 " data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
+                    <div class="icon-box iconbox-blue m-2">
+                        <div class="icon">
+                            <img src="{{ asset('storage/logos/' . $entreprise->logo) }}" width="100" height="100" class="rounded-circle me-2" alt="Logo de l'entreprise">
                         </div>
+                        <h4><a href="{{ route('entreprises.show', $entreprise->id) }}">{{ $entreprise->nom }}</a></h4>
+                        <p>{{ $entreprise->description }}</p>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="text-left">
-                        &copy; Copyright <strong><span>recrutburkina</span></strong>. All Rights Reserved
-                      </div>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+            @endforeach
+        </div>
+        <div class="section-title justify-content-center mt-5">
+            <div class="row justify-content-center">
+                <div class="col">
+                    <a href="{{ route('entreprise') }}" class="btn    bouton" style="color: #ffff;"> Voir plus</a>
                 </div>
             </div>
-        </div>
-    </div>
+      </div>
 
+    </div>
+</section>
+<section id="section3-accueil" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+        <div class="section-title">
+            <h2 class="text-white">Les candidats de la semaine</h2>
+        </div>
+    <div class="row">
+                    @foreach ($candidats as $candidat)
+                        <div class="col-lg-4 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <img src="{{ asset('storage/photos/' . $chercheurs->photo) }}" alt="Photo du candidat" class="img-fluid">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ optional(optional($candidat->chercheur)->user)->name }}</h5>
+                                    <p class="card-text">{{ optional($candidat->region)->nom }}</p>
+                                    <p class="card-text">{{ $candidat->resume_professionnel }}</p>
+                                    <p class="card-text">Domaine: {{ optional($candidat->domaine)->nom }}</p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <p class="card-text">
+                                        <a class="text-stard" href="{{ $candidat->linkedin }}" target="_blank">LinkedIn</a>
+                                        <span class="mx-2">-</span>
+                                        <a class="text-end" href="{{ $candidat->github }}" target="_blank">GitHub</a>
+                                    </p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+    </div>
+  </section>
+  <section id="section2-accueil" class="section2-accueil">
+    <div class="container">
+        <div class="section-title">
+            <h2>Les entreprises de la semaine</h2>
+        </div>
+        <div class="row">
+            @foreach ($dernieresEntreprises as $entreprise)
+                <div class="col-lg-6 col-md-6 col-12 " data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
+                    <div class="icon-box iconbox-blue m-2">
+                        <div class="icon">
+                            <img src="{{ asset('storage/logos/' . $entreprise->logo) }}" width="100" height="100" class="rounded-circle me-2" alt="Logo de l'entreprise">
+                        </div>
+                        <h4><a href="{{ route('entreprises.show', $entreprise->id) }}">{{ $entreprise->nom }}</a></h4>
+                        <p>{{ $entreprise->description }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="section-title justify-content-center mt-5">
+            <div class="row justify-content-center">
+                <div class="col">
+                    <a href="{{ route('entreprise') }}" class="btn    bouton" style="color: #ffff;"> Voir plus</a>
+                </div>
+            </div>
+      </div>
+
+    </div>
+</section>
+@endsection

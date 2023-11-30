@@ -49,7 +49,14 @@
                                 <tr>
                                     <td>{{ $offre->titre }}</td>
                                     <td>{{ $offre->description }}</td>
-                                    <td>{{ $offre->entreprise->nom }}</td>
+                                    <td>
+                                        @if ($offre->entreprise)
+                                            {{ $offre->entreprise->nom }}
+                                        @else
+                                            Entreprise non définie
+                                        @endif
+                                    </td>
+
                                      <td>
                                         <a class="btn btn-danger"
                                          href="{{ route('offres.destroy', ['offre' => $offre->id]) }}"

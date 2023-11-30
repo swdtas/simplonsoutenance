@@ -12,7 +12,7 @@
     </div>
     </div>
   </section>
-<div class="container-fluid pb-5 col-12 mt-2 col-md-12 col-xxl-12">
+<div class="container-fluid pb-5 col-10 mt-2 col-md-10 col-xxl-10">
     @include('backoffice.GestionChercheur.form')
 </div>
 @endsection

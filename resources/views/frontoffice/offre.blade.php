@@ -16,14 +16,14 @@
             @foreach ($offres as $offre)
             <article class="entry">
                 <div class="entry-img">
-                    <img src="{{ asset('storage/logos/' . $offre->entreprise->logo) }}" width="48" height="48" class="rounded-circle me-2" alt="Logo de l'entreprise">
+                    <img src="{{ asset('storage/logos/' . optional($offre->entreprise)->logo) }}" width="100" height="100" class="me-2" alt="Logo de l'entreprise">
                 </div>
                <h2 class="entry-title">
                     <a href="{{ route('offres.show', $offre->id) }}">{{ $offre->titre }}</a>
                 </h2>
                 <div class="entry-meta">
                     <ul>
-                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ route('offres.show', $offre->id) }}">{{ $offre->entreprise->nom }}</a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ route('offres.show', $offre->id) }}">{{  optional($offre->entreprise)->nom }}</a></li>
                         <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ route('offres.show', $offre->id) }}"><time datetime="{{ $offre->created_at }}">{{ $offre->created_at->diffForHumans() }}</time></a></li>
                     </ul>
                 </div>

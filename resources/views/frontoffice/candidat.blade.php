@@ -1,94 +1,56 @@
 @extends('layouts.main-front')
-@section('body') <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
+@section('body')
+<section id="section1-candidat" class="section1-candidat">
+    <div class="container">
 
-        <div class="d-flex mt-3 justify-content-between align-items-center">
-          <h2> Recrutez avec confiance, trouvez l'excellence</h2>
-          
-        </div>
+      <div class="d-flex p-5 mt-3 justify-content-between align-items-center">
+        <h2>Rencontrez nos talents exceptionnels : les candidats qui façonnent l'avenir de demain avec passion et expertise.</h2>
 
       </div>
-    </section><!-- End Breadcrumbs -->
-
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team ">
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4 mt-lg-0">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-                <p>Aut maiores voluptates amet et quis</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-                <p>Quisquam facilis cum velit laborum corrupti</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-                <p>Dolorum tempora officiis odit laborum officiis</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <form class="form-inline d-flex" method="GET" action="{{ route('candidat') }}">
+                @csrf
+                <label for="region_id" class="sr-only">Sélectionnez une région :</label>
+                    <select name="region_id" id="region_id" class="form-control">
+                        <option value="" {{ $selectedRegion === null ? 'selected' : '' }}>Toutes les régions</option>
+                        @foreach($regions as $region)
+                            <option value="{{ $region->id }}" {{ $selectedRegion == $region->id ? 'selected' : '' }}>{{ $region->nom }}</option>
+                        @endforeach
+                    </select>
+                <button class="btn bouton" type="submit">Rechercher</button>
+            </form>
         </div>
+    </div>
 
-      </div>
-    </section><!-- End Team Section -->
+    </div>
+  </section>
+<section>
+    <div class="row">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach ($candidats as $candidat)
+                <div class="col mb-4">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <img src="{{ asset('storage/photos/' . optional($candidat->chercheur)->photo) }}" alt="Avatar" class="img-fluid">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ optional(optional($candidat->chercheur)->user)->name }}</h5>
+                            <h5 class="card-title">{{ optional(optional($candidat->chercheur)->user)->surname }}</h5>
+                            <p class="card-text">{{ $candidat->resume_professionnel }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <p class="card-text">
+                                <a class="text-stard" href="{{ $candidat->linkedin }}" target="_blank">LinkedIn</a>
+                                <span class="mx-2">-</span>
+                                <a class="text-end" href="{{ $candidat->github }}" target="_blank">GitHub</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+</section>
 
-  </main>
 @endsection
+

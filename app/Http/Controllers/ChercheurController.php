@@ -16,9 +16,34 @@ class ChercheurController extends Controller
      */
     public function index()
     {
-        $chercheurs = Chercheur::all();
-        return view('backoffice.GestionChercheur.index',  ['title' => 'Ajouter un chercheur emploi', 'chercheurs' => $chercheurs,]);
+        $user = Auth::user();
+
+        // Si l'utilisateur est un chercheur, afficher seulement ses données
+        if ($user->role === 'chercheur') {
+            $chercheurs = Chercheur::where('user_id', $user->id)->get();
+
+            return view('backoffice.GestionChercheur.index', [
+                'title' => 'Vos données de chercheur',
+                'chercheurs' => $chercheurs,
+            ]);
+        }
+
+        // Si l'utilisateur est un admin, afficher toutes les données
+        elseif ($user->role === 'admin') {
+            $chercheurs = Chercheur::all();
+
+            return view('backoffice.GestionChercheur.index', [
+                'title' => 'Gestion des chercheurs',
+                'chercheurs' => $chercheurs,
+            ]);
+        }
+
+        // Gérer d'autres rôles si nécessaire
+        else {
+            return redirect('/')->with('error', 'Vous n\'avez pas les autorisations nécessaires.');
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,12 +51,9 @@ class ChercheurController extends Controller
     public function create()
     {
         $chercheurs = Chercheur::all();
-
-        if (Auth::check() && (Auth::user()->role == 'admin' || Auth::user()->role == 'user')) {
             return view('backoffice.GestionChercheur.create', ['title' => 'Ajouter un chercheur emploi', 'chercheurs' => $chercheurs]);
-        } else {
-            return view('frontoffice.enregistrement-chercheur');
-        }
+
+
     }
 
     /**
@@ -69,9 +91,11 @@ class ChercheurController extends Controller
                 'photo' => $photoName,
                 'statut' => 'en attente',
             ]);
-
-            // Redirection vers une page spécifique après la création
-            return redirect()->route('chercheurs.index')->with('success', 'Compte créé avec succès.');
+            if (Auth::check()) {
+                return redirect()->route('chercheurs.index')->with('success', 'Compte créé avec succès.');
+            } else {
+                return redirect()->route('confirmation')->with('success', 'Compte créé avec succès.');
+            }
         } catch (\Exception $e) {
             return redirect()->route('chercheurs.index')->with('error', 'Échec de l\'enregistrement : ' . $e->getMessage());
         }

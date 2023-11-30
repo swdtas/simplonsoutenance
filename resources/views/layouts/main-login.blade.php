@@ -11,9 +11,7 @@
     <title>RecrutBurkina</title>
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
-        <!--web_fonts-->
     <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&amp;subset=latin-ext" rel="stylesheet">
-    <!--//web_fonts-->
 </head>
 <body>
  @yield('body')

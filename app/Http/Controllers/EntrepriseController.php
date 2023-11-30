@@ -8,18 +8,42 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateEntrepriseRequest;
 use App\Models\Region;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class EntrepriseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $regions=Region::all();
-        $entreprises =Entreprise::all();
-        return view('backoffice.GestionEntreprise.index',  ['title' => 'Ajouter une une' , 'entreprises' => $entreprises,'regions' => $regions]);
+
+
+
+
+// ...
+
+public function index()
+{
+    $user = Auth::user();
+
+    // Si l'utilisateur est un admin, afficher toutes les données
+    if ($user->role === 'admin') {
+        $regions = Region::all();
+        $entreprises = Entreprise::all();
+        return view('backoffice.GestionEntreprise.index', ['title' => 'Ajouter une entreprise', 'entreprises' => $entreprises, 'regions' => $regions]);
     }
+
+    // Si l'utilisateur est une entreprise, afficher seulement ses données
+    elseif ($user->role === 'entreprise') {
+        $regions = Region::all();
+        $entreprises = Entreprise::where('user_id', $user->id)->get();
+        return view('backoffice.GestionEntreprise.index', ['title' => 'Vos données', 'entreprises' => $entreprises, 'regions' => $regions]);
+    }
+
+    // Gérer d'autres rôles si nécessaire
+    else {
+        return redirect('/')->with('error', 'Vous n\'avez pas les autorisations nécessaires.');
+    }
+}
 
     /**
      * Show the form for creating a new resource.
@@ -67,8 +91,11 @@ class EntrepriseController extends Controller
             'user_id' => $user->id,
         ]);
 
-           return redirect()->route('entreprises.index')
-                      ->with('success','Entreprise créée avec succès.');
+        if (Auth::check()) {
+            return redirect()->route('entreprises.index')->with('success', 'Compte créé avec succès.');
+        } else {
+            return redirect()->route('confirmation')->with('success', 'Compte créé avec succès.');
+        }
        } catch (\Exception $e) {
            return redirect()->route('entreprises.index')->with('error', 'Échec de l\'enregistrement : ' . $e->getMessage());
        }
@@ -89,23 +116,50 @@ class EntrepriseController extends Controller
      */
     public function edit(Entreprise $entreprise)
     {
-        //
+        $regions = Region::all();
+
+        return view('backoffice.GestionEntreprise.edit', [
+            'title' => 'Editer une entreprise',
+            'entreprise' => $entreprise,
+            'regions' => $regions
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEntrepriseRequest $request, Entreprise $entreprise)
-    {
-        //
+
+
+public function update(UpdateEntrepriseRequest $request, Entreprise $entreprise)
+{
+
+    $entreprise->update([
+        'nom' => $request->nom,
+        'site_web' => $request->site_web,
+        'adresse' => $request->adresse,
+        'date_creation' => $request->date_creation,
+        'region_id' => $request->region_id,
+        'description' => $request->description,
+    ]);
+
+
+    if ($request->hasFile('logo')) {
+
+    } elseif ($request->has('keepLogo')) {
+
     }
+    return redirect()->route('entreprises.index')->with('success', 'Modification Success');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Entreprise $entreprise)
     {
-        //
+        $entreprise->delete();
+        return back() ->with('success','ENTREPRISE supprimée avec succès.');
     }
     public function attente()
     {

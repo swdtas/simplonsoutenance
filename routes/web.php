@@ -25,10 +25,15 @@ use App\Http\Controllers\OffresController;
 
 Route::get('/entreprise-inscription', [ FrontController::class, 'RegisterEntreprise'])
     ->name('entreprise-inscritpion');
-Route::get('/chercheurs/create', [ChercheurController::class, 'create'])->name('chercheurs.create');
+    Route::get('/confirmation-creation-compte', [ FrontController::class, 'confirmation'])
+    ->name('confirmation');
+    Route::get('/chercheur-inscription', [ FrontController::class, 'RegisterChercheur'])
+    ->name('chercheur-inscritpion');
 Route::post('chercheurs/store', [ChercheurController::class, 'store'])->name('chercheurs.store');
 Route::get('/accueil', [ FrontController::class, 'showAccueil'])
     ->name('accueil');
+    Route::post('entreprises', [EntrepriseController::class, 'store'])->name('entreprises.store');
+    Route::post('chercheurs', [ChercheurController::class, 'store'])->name('chercheurs.store');
 
     Route::get('/les-offres-emploi', [ FrontController::class, 'showOffre'])
     ->name('offre');
@@ -49,14 +54,14 @@ Route::middleware(['auth', 'verified',])->group(function () {
     Route::resource('users', RegisteredUserController::class);
     Route::resource('domaines',DomaineController::class);
     Route::resource('regions',RegionController::class);
-    Route::resource('entreprises',EntrepriseController::class);
+    Route::resource('entreprises', EntrepriseController::class)->except('store');
     Route::get('/entreprise-attente', [EntrepriseController::class, 'attente'])->name('entreprises.attente');
     Route::post('/valider-entreprise/{id}', [EntrepriseController::class, 'validerEntreprise'])->name('valider.entreprise');
     Route::post('/refuser-entreprise/{id}', [EntrepriseController::class, 'refuserEntreprise'])->name('refuser.entreprise');
     Route::get('/liste-entreprise-refuser', [EntrepriseController::class, 'refuser'])->name('listes.refuser.entreprise');
     Route::resource('offres',OffresController::class);
     Route::get('/offres-du-jour', [OffresController::class, 'today'])->name('offres.today');
-    Route::resource('chercheurs', ChercheurController::class)->only(['index', 'show', 'edit', 'update', 'destroy']);
+    Route::resource('chercheurs', ChercheurController::class)->except('store');
     Route::get('/chercheurs-attente', [ChercheurController::class, 'attente'])->name('chercheur.attente');
     Route::post('/valider-chercheur/{id}', [ChercheurController::class, 'validerChercheur'])->name('valider.chercheur');
     Route::post('/refuser-chercheur/{id}', [ChercheurController::class, 'refuserChercheur'])->name('refuser.chercheur');
@@ -81,13 +86,7 @@ Route::middleware(['checkUserRole'])->group(function () {
     Route::delete('/backoffice/user/{id}', [RegisteredUserController::class, 'destroy'])->name('deleteUser');
 
 });
-Route::middleware(['auth', 'role:entreprise'])->group(function () {
 
-    Route::get('/nouvel_offre', 'EntrepriseController@nouvelOffre')->name('nouvel_offre');
-    Route::get('/liste_mes_offres', 'EntrepriseController@listeMesOffres')->name('liste_mes_offres');
-    Route::get('/modifier_profil_entreprise', 'EntrepriseController@modifierProfil')->name('modifier_profil_entreprise');
-    Route::get('/technologies_utilisees', 'EntrepriseController@technologiesUtilisees')->name('technologies_utilisees');
-});
 
 
 

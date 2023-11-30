@@ -20,40 +20,28 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class='sidebar-link' href=''>
+                <a class='sidebar-link' href='{{ route('entreprises.index') }}'>
                     <i class="align-middle" data-feather="edit" style="font-size: 50px; color: white;"></i>
                     <span class="align-middle">Modifier mon profil entreprise</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a class='sidebar-link' href=''>
-                    <i class="align-middle" data-feather="list" style="font-size: 50px; color: white;"></i>
-                    <span class="align-middle">Technologies utilisee</span>
                 </a>
             </li>
         @endif
                 <li class="sidebar-header">
                     @if (auth()->user()->role == 'chercheur')
+
                 <li class="sidebar-item">
-                    <a class='sidebar-link' href=''>
-                        <i class="align-middle" data-feather="plus-square" style="font-size: 50px; color: white;"></i>
-                        <span class="align-middle">Poster une candidature</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class='sidebar-link' href=''>
+                    <a class='sidebar-link' href='{{ route('candidas.index') }}'>
                         <i class="align-middle" data-feather="list" style="font-size: 50px; color: white;"></i>
                         <span class="align-middle">modifier ma candidature</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class='sidebar-link' href=''>
-                        <i class="align-middle" data-feather="edit" style="font-size: 50px; color: white;"></i>
-                        <span class="align-middle">Modifier mon profil</span>
+                    <a class='sidebar-link' href='{{ route('chercheurs.index') }}'>
+                        <i class="align-middle" data-feather="list" style="font-size: 50px; color: white;"></i>
+                        <span class="align-middle">modifier mon profil</span>
                     </a>
                 </li>
             @endif
-
             @if (auth()->check() && auth()->user()->role != 'chercheur' && auth()->user()->role != 'entreprise')
             <li class="sidebar-item">
                 <a class='sidebar-link' href='{{ route('dashboard') }}'>

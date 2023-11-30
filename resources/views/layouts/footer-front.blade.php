@@ -19,17 +19,14 @@
             <li><a class="nav-link scrollto" href="{{ route('accueil') }}">Accueil</a></li>
         <li><a class="nav-link scrollto" href="{{ route('offre') }}">Offres d'emploi</a></li>
         <li><a class="nav-link scrollto" href="{{ route('candidat') }}">Profils candidats</a></li>
-        <li><a class="nav-link scrollto" href="{{ route('entreprise') }}">Actualites</a></li>
+        <li><a class="nav-link scrollto" href="{{ route('entreprise') }}">les entrprises</a></li>
             </ul>
           </div>
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-
+        <div class="col-lg-4 col-md-6 footer-links">
+            <h3>TELECHARGEZ SUR :</h3>
+        <a href="">
+            <img src="https://th.bing.com/th/id/OIP.oBm06KPco8CC40MYlkqBiwHaEK?rs=1&pid=ImgDetMain" width="100px" alt=" app image">
+        </a>
         </div>
       </div>
     </div>
